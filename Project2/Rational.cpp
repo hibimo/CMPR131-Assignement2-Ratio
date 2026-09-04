@@ -1,15 +1,14 @@
 #include "Rational.h"
+#include <cassert>
 
 //Precondition: denominator cannot be 0.
 //Postcondition: numerator and denominator are initialized and the rational number is normalized.
-
 Rational::Rational(int numerator, int denominator)
 {
+	assert(denominator != 0);
+
 	this->numerator = numerator; //parameter(right) passed into the constructor(left)
-	if (denominator == 0)
-		this->denominator = 1;
-	else
-		this->denominator = denominator;
+	this->denominator = denominator;
 
 	normalize();//this reduce or fix the sign if necessary
 }
@@ -62,7 +61,7 @@ Rational::~Rational()
 {
 }
 // Precondition: None.
-// Postcondition: Returns the numerator.
+// Postcondition: Return the numerator.
 int Rational::getNumerator() const
 {
 	return numerator;
@@ -81,13 +80,21 @@ ostream& operator<<(ostream& outs, const Rational& r)
 
 	return outs;
 }
-// Precondition: Input contains valid integer values for numerator and denominator, and denominator is not 0.
-// Postcondition: The Rational object stores the entered values in normalized form.
+// Precondition: Input contain valid integer values for numerator and denominator, and denominator is not 0.
+// Postcondition: The Rational object store the entered values in normalized form.
 istream& operator>>(istream& ins, Rational& r)
 {
-	ins >> r.numerator;
-	ins >> r.denominator;
+	int numerator;
+	int denominator;
+	char slash;
 
+	ins >> numerator >> slash >> denominator;
+
+	assert(slash == '/');
+	assert(denominator != 0);
+
+	r.numerator = numerator;
+	r.denominator = denominator;
 	r.normalize();
 
 	return ins;
@@ -102,9 +109,11 @@ Rational operator*(const Rational& r1, const Rational& r2)
 	return Rational(newNumerator, newDenominator);
 }
 // Precondition: r1 and r2 are valid Rational objects, and r2.numerator is not zero.
-// Postcondition: Returns a normalized Rational object equal to r1 / r2.
+// Postcondition: Return a normalized Rational object equal to r1 / r2.
 Rational operator/(const Rational& r1, const Rational& r2)
 {
+	assert(r2.numerator != 0);
+
 	int newNumerator = r1.numerator * r2.denominator;
 	int newDenominator = r1.denominator * r2.numerator;
 
@@ -163,4 +172,22 @@ bool operator>(const Rational& r1, const Rational& r2)
 bool operator>=(const Rational& r1, const Rational& r2)
 {
 	return !(r1 < r2);
+}
+
+// Precondition: None.
+// Postcondition: Set the numerator to the given value and normalizes the rational number.
+void Rational::setNumerator(int numerator)
+{
+	this->numerator = numerator;
+	normalize();
+}
+// Precondition: denominator cannot be 0.
+// Postcondition: Set the denominator to the given value and normalizes the rational number.
+void Rational::setDenominator(int denominator)
+{
+	assert(denominator != 0);
+
+	this->denominator = denominator;
+	normalize();
+
 }

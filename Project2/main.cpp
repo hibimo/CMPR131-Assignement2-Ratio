@@ -1,11 +1,11 @@
-//assignement2 - 1
-//
+// Name: Hibiki Morishita
+// Date: 09/2026
+// Detail: Assignment 2 - #15 pg94-95 Rational Number
+// Group Member: 
 #include<iostream>
+#include<cctype>
 #include"input.h"
-//#include "Statistcian.h"
-#include "Rational.h"
-
-//never hard code
+#include"Rational.h"
 
 using namespace std;
 
@@ -18,23 +18,23 @@ int main()
 
 	do
 	{
-		cout << "\n3> Rational Number menu\n";
-		cout << "========================================\n";
-		cout << "A. enter values of rational number R1\n";
-		cout << "B. display R1\n";
-		cout << "C. enter values for rational number R2\n";
-		cout << "D. display R2\n";
-		cout << "E. multiplication of 2 rational numbers (R1 * R2)\n";
-		cout << "F. division of 2 rational numbers (R1 / R2)\n";
-		cout << "G. addition of 2 rational numbers (R1 + R2)\n";
-		cout << "H. subtraction of 2 rational numbers (R1 - R2)\n";
-		cout << "I. (R1 == R2)\n";
-		cout << "J. (R1 < R2)\n";
-		cout << "----------------------------------------\n";
-		cout << "0. return\n";
-		cout << "========================================\n";
+		cout << "\n\t3> Rational Number menu\n";
+		cout << "\t" << string(80, '=') << "\n";
+		cout << "\t\tA. enter values of rational number R1\n";
+		cout << "\t\tB. display R1\n";
+		cout << "\t\tC. enter values for rational number R2\n";
+		cout << "\t\tD. display R2\n";
+		cout << "\t\tE. multiplication of 2 rational numbers (R1 * R2)\n";
+		cout << "\t\tF. division of 2 rational numbers (R1 / R2)\n";
+		cout << "\t\tG. addition of 2 rational numbers (R1 + R2)\n";
+		cout << "\t\tH. subtraction of 2 rational numbers (R1 - R2)\n";
+		cout << "\t\tI. (R1 == R2)\n";
+		cout << "\t\tJ. (R1 < R2)\n";
+		cout << "\t" << string(80, '-') << "\n";
+		cout << "\t\t0. return\n";
+		cout << "\t" << string(80, '=') << "\n";
 
-		option = inputChar("Option: ");
+		option = inputChar("\t\tOption: ");
 
 		switch (toupper(option))
 		{
@@ -100,6 +100,44 @@ int main()
 			cout << "\nRational number R2: " << r2 << "\n";
 			break;
 		}
+		case 'E':
+		{
+			cout << "\nR1 * R2 = " << (r1 * r2) << "\n";
+			break;
+		}
+		case 'F':
+		{
+			if (r2.getNumerator() == 0)
+			{
+				cout << "ERROR: Cannot divide by zero.\n";
+			} else
+			{
+				cout << "\nR1 / R2 = " << (r1 / r2) << "\n";
+			}
+			break;
+		}
+		case 'G':
+		{
+			cout << "\nR1 + R2 = " << (r1 + r2) << "\n";
+			break;
+		}
+		case 'H':
+		{
+			cout << "\nR1 - R2 = " << (r1 - r2) << "\n";
+			break;
+		}
+		case 'I':
+		{
+			cout << boolalpha;
+			cout << "\n(R1 == R2) : " << (r1 == r2) << "\n";
+			break;
+		}
+		case 'J':
+		{
+			cout << boolalpha;
+			cout << "\n(R1 < R2) : " << (r1 < r2) << "\n";
+			break;
+		}
 		case '0':
 			break;
 
@@ -108,41 +146,13 @@ int main()
 			break;
 		}
 
+		if (option != '0')
+		{
+			system("pause");
+			system("cls");
+		}
 	} while (option != '0');
 
 	return 0;
 
 }
-/*
-{
-	Statistcian test; // testing the default constructor
-	srand(time(0));
-
-	int size = 100;
-
-	for (int i = 1; i <size;i++)
-	{
-		double number = rand() % 1000 * 0.1;// Only can create positive numbers? 
-		test.next_number(number);// testingf the method
-		cout << number << "\n";
-	}
-
-	cout << "\n largest" << test.getLargest();
-	cout << "\n smallest" << test.getSmallest();
-	cout << "\n sum" << test.getSum();
-	cout << "\n mean" << test.getMean();
-
-	cout << test << "\n";
-
-	test.erase();
-
-	cout << test << "\n";
-
-	//cout << "\n largest" << test.getLargest();
-	//cout << "\n smallest" << test.getSmallest();
-	//cout << "\n sum" << test.getSum();
-	//cout << "\n mean" << test.getMean();
-
-	
-}
-*/

@@ -1,7 +1,6 @@
 
 #ifndef Rational_H
 #define Rational_H
-
 #include <iostream>
 
 using namespace std;
@@ -29,18 +28,18 @@ public:
 	void setDenominator(int denominator);
 
 	//arithmetic operator
-	friend Rational operator+ (const Rational & r1, const Rational& r2);
-	friend Rational operator- (const Rational & r1, const Rational& r2);
-	friend Rational operator* (const Rational & r1, const Rational& r2);
-	friend Rational operator/ (const Rational & r1, const Rational& r2);
+	friend Rational operator+(const Rational & r1, const Rational& r2);
+	friend Rational operator-(const Rational & r1, const Rational& r2);
+	friend Rational operator*(const Rational & r1, const Rational& r2);
+	friend Rational operator/(const Rational & r1, const Rational& r2);
 
-	//comparison operator
-	friend bool operator== (const Rational& r1, const Rational& r2);
-	friend bool operator!= (const Rational& r1, const Rational& r2);
-	friend bool operator< (const Rational& r1, const Rational& r2);
-	friend bool operator<= (const Rational& r1, const Rational& r2);
-	friend bool operator> (const Rational& r1, const Rational& r2);
-	friend bool operator>= (const Rational& r1, const Rational& r2);
+	//comparison operator - overloading with operators!=,<=,>,>=.
+	friend bool operator==(const Rational& r1, const Rational& r2);
+	friend bool operator!=(const Rational& r1, const Rational& r2);
+	friend bool operator<(const Rational& r1, const Rational& r2);
+	friend bool operator<=(const Rational& r1, const Rational& r2);
+	friend bool operator>(const Rational& r1, const Rational& r2);
+	friend bool operator>=(const Rational& r1, const Rational& r2);
 
 	//input/output operators
 	friend ostream& operator<<(ostream& outs, const Rational& r);
